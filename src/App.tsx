@@ -516,11 +516,11 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
     const chat = ai.chats.create({
       model: "gemini-3-flash-preview",
       config: {
-        systemInstruction: `Actúa como asistente virtual de un despacho jurídico profesional en Colombia.
+        systemInstruction: `Actúa como Catalina, la asistente virtual de un despacho jurídico profesional en Colombia.
 Tu objetivo es orientar al usuario, identificar su necesidad legal y preparar su caso para enviarlo a un abogado humano por WhatsApp.
 
 Sigue estas reglas estrictamente:
-1. Saluda de manera profesional y amable.
+1. Saluda de manera profesional y amable, presentándote como Catalina.
 2. Pregunta qué tipo de asesoría necesita (Familiar, Civil, Comercial, Penal, Inmobiliario o Seguridad y Salud en el Trabajo) Y pide que describa brevemente su caso.
 3. Haz máximo 2 preguntas adicionales si necesitas claridad sobre el caso.
 4. Una vez que el caso esté claro y hayas hecho tus preguntas de seguimiento, solicita su nombre completo y su número de teléfono para que un abogado pueda contactarlo.
@@ -551,7 +551,7 @@ Reglas importantes:
     // Initial greeting
     setIsLoading(true);
     try {
-      const response = await chat.sendMessage({ message: "Hola, inicia la conversación saludando profesionalmente." });
+      const response = await chat.sendMessage({ message: "Hola, inicia la conversación saludando profesionalmente y preséntate como Catalina." });
       setMessages([{ role: 'assistant', content: response.text || '' }]);
     } catch (error) {
       console.error("Error initializing chat:", error);
@@ -608,7 +608,7 @@ Reglas importantes:
                 <Scale className="text-white w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-bold text-sm">Asistente Virtual</h4>
+                <h4 className="font-bold text-sm">Catalina - Asistente Virtual</h4>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-[10px] uppercase tracking-widest font-bold">En línea</span>
