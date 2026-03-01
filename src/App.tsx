@@ -138,30 +138,33 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
   <nav className="sticky top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-white/10">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-24">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 bg-white flex items-center justify-center rounded-lg shadow-lg">
-            <Scale className="text-brand-black w-10 h-10" />
+        <div className="flex items-center gap-3 sm:gap-4">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white flex items-center justify-center rounded-lg shadow-lg shrink-0">
+            <Scale className="text-brand-black w-7 h-7 sm:w-10 sm:h-10" />
           </div>
           <div className="flex flex-col">
-            <span className="text-2xl font-serif font-bold tracking-tight text-white leading-none">
+            <span className="text-lg sm:text-2xl font-serif font-bold tracking-tight text-white leading-tight sm:leading-none">
               Profesionales Jurídicos
             </span>
-            <span className="text-sm font-sans font-medium text-gray-400 uppercase tracking-widest">
+            <span className="text-[10px] sm:text-sm font-sans font-medium text-gray-400 uppercase tracking-widest">
               de Colombia
             </span>
           </div>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-          <a href="#inicio" className="hover:text-white transition-colors">Inicio</a>
-          <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
-          <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-          <a href="#equipo" className="hover:text-white transition-colors">Equipo</a>
-          <a href="#contacto" className="hover:text-white transition-colors">Contacto</a>
+        
+        <div className="flex items-center gap-2 sm:gap-8">
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+            <a href="#inicio" className="hover:text-white transition-colors">Inicio</a>
+            <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
+            <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
+            <a href="#equipo" className="hover:text-white transition-colors">Equipo</a>
+            <a href="#contacto" className="hover:text-white transition-colors">Contacto</a>
+          </div>
           <button 
             onClick={onConsultClick}
-            className="flex items-center gap-2 text-brand-black bg-white px-6 py-2.5 rounded-full font-bold hover:bg-gray-200 transition-all shadow-lg"
+            className="flex items-center gap-2 text-brand-black bg-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:bg-gray-200 transition-all shadow-lg whitespace-nowrap"
           >
-            <MessageCircle size={18} />
+            <MessageCircle size={16} className="sm:w-[18px] sm:h-[18px]" />
             <span>Consultar ahora</span>
           </button>
         </div>
