@@ -31,10 +31,15 @@ import {
 
 // --- Types ---
 
+interface SpecialtyGroup {
+  niche: string;
+  items: string[];
+}
+
 interface Lawyer {
   name: string;
   role: string;
-  specialties: string[];
+  specialties: SpecialtyGroup[];
   image: string;
 }
 
@@ -45,90 +50,113 @@ const LAWYERS: Lawyer[] = [
     name: "Álvaro Tovar",
     role: "Representante Legal Abogado",
     specialties: [
-      "Derecho civil: Contratos",
-      "Obligaciones y responsabilidad civil",
-      "Gestión de cobro de cartera",
-      "Propiedad horizontal",
-      "Derecho laboral",
-      "Derecho probatorio y procesal",
-      "Derecho de familia"
+      { niche: "Civil", items: ["Contratos", "Obligaciones", "Propiedad horizontal", "Cobro de cartera"] },
+      { niche: "Laboral", items: ["Derecho laboral"] },
+      { niche: "Familia", items: ["Derecho de familia"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1PGxEveizwhaCZ5ttBMCpDtQ_97uDPcV7&sz=w1000"
   },
   {
     name: "Laura Tovar",
     role: "Abogada",
-    specialties: ["Pertenencia", "Divisorio", "Restitución de bien inmueble", "Divorcios", "Sucesiones"],
-    image: "https://drive.google.com/thumbnail?id=1D-QYIOhKWVamR1yjnBJWJBK24DAZjFo4&sz=w1000"
+    specialties: [
+      { niche: "Civil e Inmobiliario", items: ["Pertenencia", "Divisorio", "Restitución de bien"] },
+      { niche: "Familia", items: ["Divorcios", "Sucesiones"] }
+    ],
+    image: "https://drive.google.com/thumbnail?id=1D4_ADQd5J04G52yMBAepUQZQ7vQa_dQZ&sz=w1000"
   },
   {
     name: "Ingrid Ramírez",
     role: "Abogada",
-    specialties: ["Sucesiones", "Procesos laborales", "Monitorios", "Indemnizaciones despido sin justa causa", "Pensiones"],
+    specialties: [
+      { niche: "Laboral", items: ["Procesos laborales", "Pensiones", "Indemnizaciones"] },
+      { niche: "Familia", items: ["Sucesiones"] },
+      { niche: "Civil", items: ["Monitorios"] }
+    ],
     image: "https://drive.google.com/thumbnail?id=1zm0jusx1gr13tUwCTYreAhojGbtF7USf&sz=w1000"
   },
   {
     name: "Andrés Peñaloza",
     role: "Abogado",
-    specialties: ["Procesos penales (primera y segunda instancia)", "Casación y revisión", "Representación de víctima", "Denuncias", "Querellas"],
+    specialties: [
+      { niche: "Penal", items: ["Procesos penales", "Casación", "Representación de víctima", "Denuncias"] }
+    ],
     image: "https://drive.google.com/thumbnail?id=1Tc1tzgh6xcnmISbssz2uECd5tsL0wUex&sz=w1000"
   },
   {
     name: "Sandra Fernández",
     role: "Abogada",
-    specialties: ["Créditos de libranza", "Procesos ejecutivos", "Asesorías financieras", "Créditos de consumo", "Constitución de empresas"],
+    specialties: [
+      { niche: "Comercial y Financiero", items: ["Créditos de libranza", "Asesorías financieras", "Constitución de empresas"] }
+    ],
     image: "https://drive.google.com/thumbnail?id=1LWxBimmpVaZxWHqxJi_CY1tP64I6EgWN&sz=w1000"
   },
   {
     name: "Sonia Peña",
     role: "Abogada",
-    specialties: ["Rendición de cuentas", "Cancelación de patrimonio", "Cobro de obligaciones", "Pertenencia", "Reivindicatorios"],
+    specialties: [
+      { niche: "Civil", items: ["Rendición de cuentas", "Pertenencia", "Reivindicatorios"] },
+      { niche: "Comercial", items: ["Cobro de obligaciones"] }
+    ],
     image: "https://drive.google.com/thumbnail?id=10s9GMM9xMHjjplQnWj_r-9dyigLxFQtR&sz=w1000"
   },
   {
     name: "Dahjer Ibarra",
     role: "Abogado",
-    specialties: ["Representación de víctima", "Procesos ejecutivos", "Representación en comisaría de familia", "Acciones de nulidad y restablecimiento de derecho", "Contratación laboral"],
+    specialties: [
+      { niche: "Penal", items: ["Representación de víctima"] },
+      { niche: "Familia", items: ["Comisaría de familia"] },
+      { niche: "Administrativo", items: ["Acciones de nulidad"] }
+    ],
     image: "https://drive.google.com/thumbnail?id=1Izy1ZAoqtLd_9ob-faUaO8mgCnhwPNX0&sz=w1000"
-  },
-  {
-    name: "Gabriela Ávila",
-    role: "Abogada",
-    specialties: ["Consultora derecho civil, familia y laboral", "Contratos", "Derechos de petición", "Tutelas"],
-    image: "https://drive.google.com/thumbnail?id=1cin4M4lkvuAdU9aF9U0aitA2gOxadgAT&sz=w1000"
   }
 ];
 
 const SERVICES = [
   {
-    title: "Familiar",
-    description: "Todo lo relacionado con el derecho de familia: demanda de alimentos, divorcio, custodia, liquidación de sociedad conyugal, entre otros. Contamos con abogados especializados en derecho de familia, dispuestos a ayudarle y asesorarle en cada etapa de su proceso legal.",
-    icon: Heart
+    niche: "Derecho de Familia y Personas",
+    items: [
+      {
+        title: "Familiar",
+        description: "Todo lo relacionado con el derecho de familia: demanda de alimentos, divorcio, custodia, liquidación de sociedad conyugal, entre otros. Contamos con abogados especializados en derecho de familia, dispuestos a ayudarle y asesorarle en cada etapa de su proceso legal.",
+        icon: Heart
+      },
+      {
+        title: "Civil",
+        description: "Contamos con abogados especializados en derecho civil, preparados para brindar asesoría en relaciones civiles y privadas. Ofrecemos soluciones efectivas a situaciones que afectan la vida cotidiana, garantizando acompañamiento profesional y oportuno.",
+        icon: Gavel
+      }
+    ]
   },
   {
-    title: "Civil",
-    description: "Contamos con abogados especializados en derecho civil, preparados para brindar asesoría en relaciones civiles y privadas. Ofrecemos soluciones efectivas a situaciones que afectan la vida cotidiana, garantizando acompañamiento profesional y oportuno.",
-    icon: Gavel
+    niche: "Derecho Empresarial y Laboral",
+    items: [
+      {
+        title: "Comercial",
+        description: "Asesoría legal para su negocio. Nuestros abogados cuentan con la experiencia necesaria para orientarle y representarle en asuntos relacionados con su empresa. Brindamos acompañamiento permanente en todo lo relacionado con el área comercial.",
+        icon: Building2
+      },
+      {
+        title: "Seguridad y Salud en el Trabajo",
+        description: "Le asesoramos en la implementación y creación del Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST). Nuestro objetivo es prevenir riesgos legales y evitar inconvenientes futuros relacionados con la seguridad social de sus trabajadores.",
+        icon: HardHat
+      }
+    ]
   },
   {
-    title: "Comercial",
-    description: "Asesoría legal para su negocio. Nuestros abogados cuentan con la experiencia necesaria para orientarle y representarle en asuntos relacionados con su empresa. Brindamos acompañamiento permanente en todo lo relacionado con el área comercial.",
-    icon: Building2
-  },
-  {
-    title: "Seguridad y Salud en el Trabajo",
-    description: "Le asesoramos en la implementación y creación del Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST). Nuestro objetivo es prevenir riesgos legales y evitar inconvenientes futuros relacionados con la seguridad social de sus trabajadores.",
-    icon: HardHat
-  },
-  {
-    title: "Penal",
-    description: "Expertos en el manejo de cualquier situación legal en materia penal. Nuestros abogados penalistas le brindarán asesoría integral y representación legal adecuada según el caso presentado, protegiendo sus derechos en todo momento.",
-    icon: ShieldAlert
-  },
-  {
-    title: "Inmobiliario",
-    description: "Ofrecemos asesoría en servicios inmobiliarios, desde el saneamiento de la propiedad de inmuebles hasta cobros de cuotas de administración, entre otros. Con nuestro equipo contará con el respaldo necesario para llevar sus procesos a buen término.",
-    icon: Home
+    niche: "Derecho de Propiedad y Penal",
+    items: [
+      {
+        title: "Inmobiliario",
+        description: "Ofrecemos asesoría en servicios inmobiliarios, desde el saneamiento de la propiedad de inmuebles hasta cobros de cuotas de administración, entre otros. Con nuestro equipo contará con el respaldo necesario para llevar sus procesos a buen término.",
+        icon: Home
+      },
+      {
+        title: "Penal",
+        description: "Expertos en el manejo de cualquier situación legal en materia penal. Nuestros abogados penalistas le brindarán asesoría integral y representación legal adecuada según el caso presentado, protegiendo sus derechos en todo momento.",
+        icon: ShieldAlert
+      }
+    ]
   }
 ];
 
@@ -162,7 +190,7 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
           </div>
           <button 
             onClick={onConsultClick}
-            className="flex items-center gap-2 text-brand-black bg-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:bg-gray-200 transition-all shadow-lg whitespace-nowrap"
+            className="flex items-center gap-2 text-white bg-brand-accent px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:bg-brand-accent/80 transition-all shadow-lg whitespace-nowrap"
           >
             <MessageCircle size={16} className="sm:w-[18px] sm:h-[18px]" />
             <span>Consultar ahora</span>
@@ -199,7 +227,7 @@ const Hero = () => (
         <div className="flex flex-wrap gap-4">
           <a 
             href="#contacto" 
-            className="bg-white text-brand-black px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-gray-light transition-all shadow-xl flex items-center gap-2"
+            className="bg-brand-accent text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-accent/80 transition-all shadow-xl flex items-center gap-2"
           >
             Consultar Ahora <ChevronRight size={20} />
           </a>
@@ -259,30 +287,39 @@ const Services = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Nuestros Servicios</h2>
-        <div className="w-24 h-1 bg-white/20 mx-auto mb-6"></div>
+        <div className="w-24 h-1 bg-brand-accent mx-auto mb-6"></div>
         <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-          Soluciones legales integrales adaptadas a sus necesidades específicas.
+          Soluciones legales integrales adaptadas a sus necesidades específicas, organizadas por especialidad.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {SERVICES.map((service, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="bg-brand-gray-dark p-8 rounded-3xl border border-white/5 hover:border-white/20 transition-all group"
-          >
-            <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:bg-white group-hover:text-brand-black transition-colors">
-              <service.icon size={32} />
+      <div className="space-y-16">
+        {SERVICES.map((group, gIdx) => (
+          <div key={gIdx}>
+            <h3 className="text-xl font-sans font-bold text-brand-accent uppercase tracking-widest mb-8 border-l-4 border-brand-accent pl-4">
+              {group.niche}
+            </h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {group.items.map((service, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-brand-gray-dark p-8 rounded-3xl border border-white/5 hover:border-brand-accent/30 transition-all group"
+                >
+                  <div className="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent group-hover:text-white transition-colors">
+                    <service.icon size={32} />
+                  </div>
+                  <h3 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {service.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-            <h3 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h3>
-            <p className="text-gray-400 leading-relaxed">
-              {service.description}
-            </p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
@@ -294,34 +331,43 @@ const Team = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Nuestro Equipo de Expertos</h2>
-        <div className="w-24 h-1 bg-white/20 mx-auto mb-6"></div>
+        <div className="w-24 h-1 bg-brand-accent mx-auto mb-6"></div>
         <p className="text-gray-400 max-w-2xl mx-auto text-lg">
           Profesionales altamente calificados dedicados a defender sus derechos.
         </p>
       </div>
       
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="flex flex-wrap justify-center gap-8">
         {LAWYERS.map((lawyer, idx) => (
           <motion.div 
             key={idx}
             whileHover={{ y: -10 }}
-            className="bg-brand-black rounded-2xl overflow-hidden shadow-2xl border border-white/5 flex flex-col h-full"
+            className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] bg-brand-black rounded-2xl overflow-hidden shadow-2xl border border-white/5 flex flex-col group"
           >
             <div className="aspect-[4/5] overflow-hidden">
               <img 
                 src={lawyer.image} 
                 alt={lawyer.name} 
-                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                className="w-full h-full object-cover transition-all duration-500 object-top"
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-serif font-bold mb-1 text-white">{lawyer.name}</h3>
+              <h3 className="text-xl font-serif font-bold mb-1 text-white group-hover:text-brand-accent transition-colors">{lawyer.name}</h3>
               <p className="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">{lawyer.role}</p>
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {lawyer.specialties.map((spec, sIdx) => (
-                  <span key={sIdx} className="text-[11px] bg-white/5 px-2 py-1 rounded-md text-gray-300 border border-white/10">
-                    {spec}
-                  </span>
+              <div className="space-y-4 mt-auto">
+                {lawyer.specialties.map((group, gIdx) => (
+                  <div key={gIdx} className="space-y-1">
+                    <p className="text-[10px] font-bold text-brand-accent uppercase tracking-tighter opacity-80">
+                      {group.niche}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {group.items.map((item, iIdx) => (
+                        <span key={iIdx} className="text-[10px] bg-white/5 px-2 py-0.5 rounded-md text-gray-300 border border-white/10 group-hover:border-brand-accent/30">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -372,7 +418,7 @@ Nivel de urgencia: Media`;
             
             <div className="space-y-8">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white text-brand-black rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-brand-accent text-white rounded-full flex items-center justify-center shrink-0">
                   <MapPin size={24} />
                 </div>
                 <div>
@@ -382,7 +428,7 @@ Nivel de urgencia: Media`;
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white text-brand-black rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-brand-accent text-white rounded-full flex items-center justify-center shrink-0">
                   <Phone size={24} />
                 </div>
                 <div>
@@ -394,7 +440,7 @@ Nivel de urgencia: Media`;
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white text-brand-black rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-brand-accent text-white rounded-full flex items-center justify-center shrink-0">
                   <Mail size={24} />
                 </div>
                 <div>
@@ -459,7 +505,7 @@ Nivel de urgencia: Media`;
               </div>
               <button 
                 type="submit"
-                className="w-full bg-white text-brand-black py-4 rounded-xl font-bold text-lg hover:bg-gray-200 transition-colors shadow-lg"
+                className="w-full bg-brand-accent text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-accent/80 transition-colors shadow-lg"
               >
                 Enviar Mensaje
               </button>

@@ -9,6 +9,7 @@
   --color-brand-gray-light: #f5f5f5;
   --color-brand-gray-medium: #262626;
   --color-brand-gray-dark: #171717;
+  --color-brand-accent: #f2af1e;
 }
 
 @layer base {
