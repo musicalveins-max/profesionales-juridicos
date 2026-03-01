@@ -135,31 +135,31 @@ const SERVICES = [
 // --- Components ---
 
 const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
-  <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+  <nav className="sticky top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-white/10">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-24">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 bg-brand-black flex items-center justify-center rounded-lg shadow-lg">
-            <Scale className="text-white w-10 h-10" />
+          <div className="w-16 h-16 bg-white flex items-center justify-center rounded-lg shadow-lg">
+            <Scale className="text-brand-black w-10 h-10" />
           </div>
           <div className="flex flex-col">
-            <span className="text-2xl font-serif font-bold tracking-tight text-gray-900 leading-none">
+            <span className="text-2xl font-serif font-bold tracking-tight text-white leading-none">
               Profesionales Jurídicos
             </span>
-            <span className="text-sm font-sans font-medium text-gray-500 uppercase tracking-widest">
+            <span className="text-sm font-sans font-medium text-gray-400 uppercase tracking-widest">
               de Colombia
             </span>
           </div>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          <a href="#inicio" className="hover:text-brand-black transition-colors">Inicio</a>
-          <a href="#nosotros" className="hover:text-brand-black transition-colors">Nosotros</a>
-          <a href="#servicios" className="hover:text-brand-black transition-colors">Servicios</a>
-          <a href="#equipo" className="hover:text-brand-black transition-colors">Equipo</a>
-          <a href="#contacto" className="hover:text-brand-black transition-colors">Contacto</a>
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+          <a href="#inicio" className="hover:text-white transition-colors">Inicio</a>
+          <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
+          <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
+          <a href="#equipo" className="hover:text-white transition-colors">Equipo</a>
+          <a href="#contacto" className="hover:text-white transition-colors">Contacto</a>
           <button 
             onClick={onConsultClick}
-            className="flex items-center gap-2 text-white bg-brand-black px-6 py-2.5 rounded-full font-bold hover:bg-gray-800 transition-all shadow-lg"
+            className="flex items-center gap-2 text-brand-black bg-white px-6 py-2.5 rounded-full font-bold hover:bg-gray-200 transition-all shadow-lg"
           >
             <MessageCircle size={18} />
             <span>Consultar ahora</span>
@@ -171,38 +171,38 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
 );
 
 const Hero = () => (
-  <section id="inicio" className="relative h-[80vh] flex items-center overflow-hidden bg-gray-100">
-    <div className="absolute inset-0 opacity-20">
+  <section id="inicio" className="relative h-[80vh] flex items-center overflow-hidden bg-brand-black">
+    <div className="absolute inset-0 opacity-40">
       <img 
         src="https://drive.google.com/thumbnail?id=1cIJagcmjiMNklG8B8U0Dsxwda5v7EFeS&sz=w1920" 
         alt="Justicia" 
         className="w-full h-full object-cover"
       />
     </div>
-    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-900">
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="max-w-3xl"
       >
-        <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6 text-gray-900">
+        <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6">
           Abogados Profesionales Jurídicos de Colombia
         </h1>
-        <p className="text-xl md:text-2xl font-light text-gray-700 mb-8 leading-relaxed">
+        <p className="text-xl md:text-2xl font-light text-gray-300 mb-8 leading-relaxed">
           Excelencia legal, integridad y compromiso con la justicia en cada caso. 
           Su tranquilidad jurídica es nuestra prioridad.
         </p>
         <div className="flex flex-wrap gap-4">
           <a 
             href="#contacto" 
-            className="bg-brand-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all shadow-xl flex items-center gap-2"
+            className="bg-white text-brand-black px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-gray-light transition-all shadow-xl flex items-center gap-2"
           >
             Consultar Ahora <ChevronRight size={20} />
           </a>
           <a 
             href="#equipo" 
-            className="border border-brand-black/20 backdrop-blur-sm text-brand-black px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-black/5 transition-all"
+            className="border border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all"
           >
             Ver Nuestro Equipo
           </a>
@@ -213,35 +213,35 @@ const Hero = () => (
 );
 
 const Features = () => (
-  <section className="py-24 bg-white border-y border-gray-100">
+  <section className="py-24 bg-brand-black border-y border-white/5">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid md:grid-cols-3 gap-12">
         <div className="flex flex-col gap-4">
-          <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-brand-black">
+          <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-white">
             <ShieldCheck size={28} />
           </div>
-          <h3 className="text-2xl font-serif font-bold text-gray-900">Confianza Total</h3>
-          <p className="text-gray-600 leading-relaxed">
+          <h3 className="text-2xl font-serif font-bold text-white">Confianza Total</h3>
+          <p className="text-gray-400 leading-relaxed">
             Manejamos cada caso con la máxima discreción y profesionalismo, 
             asegurando que sus intereses estén siempre protegidos.
           </p>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-brand-black">
+          <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-white">
             <Clock size={28} />
           </div>
-          <h3 className="text-2xl font-serif font-bold text-gray-900">Respuesta Ágil</h3>
-          <p className="text-gray-600 leading-relaxed">
+          <h3 className="text-2xl font-serif font-bold text-white">Respuesta Ágil</h3>
+          <p className="text-gray-400 leading-relaxed">
             Entendemos que el tiempo es crucial en asuntos legales. 
             Brindamos asesoría oportuna y efectiva.
           </p>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-brand-black">
+          <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-white">
             <Briefcase size={28} />
           </div>
-          <h3 className="text-2xl font-serif font-bold text-gray-900">Experiencia Multidisciplinaria</h3>
-          <p className="text-gray-600 leading-relaxed">
+          <h3 className="text-2xl font-serif font-bold text-white">Experiencia Multidisciplinaria</h3>
+          <p className="text-gray-400 leading-relaxed">
             Contamos con especialistas en diversas áreas del derecho para 
             ofrecer una solución integral a sus necesidades.
           </p>
@@ -252,12 +252,12 @@ const Features = () => (
 );
 
 const Services = () => (
-  <section id="servicios" className="py-24 bg-white">
+  <section id="servicios" className="py-24 bg-brand-black">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-gray-900">Nuestros Servicios</h2>
-        <div className="w-24 h-1 bg-brand-black/10 mx-auto mb-6"></div>
-        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Nuestros Servicios</h2>
+        <div className="w-24 h-1 bg-white/20 mx-auto mb-6"></div>
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
           Soluciones legales integrales adaptadas a sus necesidades específicas.
         </p>
       </div>
@@ -270,13 +270,13 @@ const Services = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
-            className="bg-gray-50 p-8 rounded-3xl border border-gray-200 hover:border-brand-black/20 transition-all group"
+            className="bg-brand-gray-dark p-8 rounded-3xl border border-white/5 hover:border-white/20 transition-all group"
           >
-            <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-brand-black mb-6 group-hover:bg-brand-black group-hover:text-white transition-colors shadow-sm">
+            <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:bg-white group-hover:text-brand-black transition-colors">
               <service.icon size={32} />
             </div>
-            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">{service.title}</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h3>
+            <p className="text-gray-400 leading-relaxed">
               {service.description}
             </p>
           </motion.div>
@@ -287,12 +287,12 @@ const Services = () => (
 );
 
 const Team = () => (
-  <section id="equipo" className="py-24 bg-gray-50">
+  <section id="equipo" className="py-24 bg-brand-gray-dark">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-gray-900">Nuestro Equipo de Expertos</h2>
-        <div className="w-24 h-1 bg-brand-black/10 mx-auto mb-6"></div>
-        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Nuestro Equipo de Expertos</h2>
+        <div className="w-24 h-1 bg-white/20 mx-auto mb-6"></div>
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
           Profesionales altamente calificados dedicados a defender sus derechos.
         </p>
       </div>
@@ -302,7 +302,7 @@ const Team = () => (
           <motion.div 
             key={idx}
             whileHover={{ y: -10 }}
-            className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200 flex flex-col h-full"
+            className="bg-brand-black rounded-2xl overflow-hidden shadow-2xl border border-white/5 flex flex-col h-full"
           >
             <div className="aspect-[4/5] overflow-hidden">
               <img 
@@ -312,11 +312,11 @@ const Team = () => (
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-serif font-bold mb-1 text-gray-900">{lawyer.name}</h3>
-              <p className="text-sm font-medium text-gray-500 mb-4 uppercase tracking-wider">{lawyer.role}</p>
+              <h3 className="text-xl font-serif font-bold mb-1 text-white">{lawyer.name}</h3>
+              <p className="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">{lawyer.role}</p>
               <div className="flex flex-wrap gap-2 mt-auto">
                 {lawyer.specialties.map((spec, sIdx) => (
-                  <span key={sIdx} className="text-[11px] bg-gray-100 px-2 py-1 rounded-md text-gray-700 border border-gray-200">
+                  <span key={sIdx} className="text-[11px] bg-white/5 px-2 py-1 rounded-md text-gray-300 border border-white/10">
                     {spec}
                   </span>
                 ))}
@@ -357,106 +357,106 @@ Nivel de urgencia: Media`;
   };
 
   return (
-    <section id="contacto" className="py-24 bg-white">
+    <section id="contacto" className="py-24 bg-brand-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-4xl font-serif font-bold mb-8 text-gray-900">Contáctenos</h2>
-            <p className="text-gray-600 text-lg mb-12 leading-relaxed">
+            <h2 className="text-4xl font-serif font-bold mb-8 text-white">Contáctenos</h2>
+            <p className="text-gray-400 text-lg mb-12 leading-relaxed">
               Estamos listos para escuchar su caso y brindarle la mejor asesoría legal. 
               Visítenos en nuestra oficina o comuníquese por cualquiera de nuestros canales.
             </p>
             
             <div className="space-y-8">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-white text-brand-black rounded-full flex items-center justify-center shrink-0">
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-gray-900">Ubicación</h4>
-                  <p className="text-gray-600">Barrio Restrepo, Bogotá D.C.</p>
+                  <h4 className="font-bold text-lg text-white">Ubicación</h4>
+                  <p className="text-gray-400">Barrio Restrepo, Bogotá D.C.</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-white text-brand-black rounded-full flex items-center justify-center shrink-0">
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-gray-900">Teléfonos</h4>
-                  <p className="text-gray-600">WhatsApp: 321 202 1513</p>
-                  <p className="text-gray-600">Llamadas: 314 381 8057</p>
-                  <p className="text-gray-600">Fijo: (601) 404 2495</p>
+                  <h4 className="font-bold text-lg text-white">Teléfonos</h4>
+                  <p className="text-gray-400">WhatsApp: 321 202 1513</p>
+                  <p className="text-gray-400">Llamadas: 314 381 8057</p>
+                  <p className="text-gray-400">Fijo: (601) 404 2495</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-white text-brand-black rounded-full flex items-center justify-center shrink-0">
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-gray-900">Correo Electrónico</h4>
-                  <p className="text-gray-600">contacto@profesionalesjuridicos.com</p>
+                  <h4 className="font-bold text-lg text-white">Correo Electrónico</h4>
+                  <p className="text-gray-400">contacto@profesionalesjuridicos.com</p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="bg-gray-50 p-8 rounded-3xl border border-gray-200">
+          <div className="bg-brand-gray-dark p-8 rounded-3xl border border-white/5">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Nombre Completo</label>
+                  <label className="text-sm font-bold uppercase tracking-wider text-gray-500">Nombre Completo</label>
                   <input 
                     type="text" 
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full p-4 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-black/5" 
+                    className="w-full p-4 rounded-xl border border-white/10 bg-brand-black text-white focus:outline-none focus:ring-2 focus:ring-white/20" 
                     placeholder="Ej. Juan Pérez" 
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Teléfono</label>
+                  <label className="text-sm font-bold uppercase tracking-wider text-gray-500">Teléfono</label>
                   <input 
                     type="tel" 
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full p-4 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-black/5" 
+                    className="w-full p-4 rounded-xl border border-white/10 bg-brand-black text-white focus:outline-none focus:ring-2 focus:ring-white/20" 
                     placeholder="Ej. 321 000 0000" 
                   />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Asunto</label>
+                <label className="text-sm font-bold uppercase tracking-wider text-gray-500">Asunto</label>
                 <input 
                   type="text" 
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full p-4 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-black/5" 
+                  className="w-full p-4 rounded-xl border border-white/10 bg-brand-black text-white focus:outline-none focus:ring-2 focus:ring-white/20" 
                   placeholder="Ej. Consulta Familiar" 
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Mensaje</label>
+                <label className="text-sm font-bold uppercase tracking-wider text-gray-500">Mensaje</label>
                 <textarea 
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   rows={4} 
-                  className="w-full p-4 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-black/5" 
+                  className="w-full p-4 rounded-xl border border-white/10 bg-brand-black text-white focus:outline-none focus:ring-2 focus:ring-white/20" 
                   placeholder="Describa brevemente su consulta legal..."
                 ></textarea>
               </div>
               <button 
                 type="submit"
-                className="w-full bg-brand-black text-white py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-colors shadow-lg"
+                className="w-full bg-white text-brand-black py-4 rounded-xl font-bold text-lg hover:bg-gray-200 transition-colors shadow-lg"
               >
                 Enviar Mensaje
               </button>
@@ -469,27 +469,27 @@ Nivel de urgencia: Media`;
 };
 
 const Footer = () => (
-  <footer className="bg-gray-50 text-gray-900 py-12 border-t border-gray-200">
+  <footer className="bg-brand-gray-dark text-white py-12 border-t border-white/5">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-200 pb-12 mb-12">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/10 pb-12 mb-12">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-brand-black flex items-center justify-center rounded-lg">
-            <Scale className="text-white w-8 h-8" />
+          <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg">
+            <Scale className="text-brand-black w-8 h-8" />
           </div>
           <div className="flex flex-col">
             <span className="text-xl font-serif font-bold">Profesionales Jurídicos</span>
             <span className="text-xs font-sans uppercase tracking-widest opacity-60">de Colombia</span>
           </div>
         </div>
-        <div className="flex gap-8 text-sm font-medium text-gray-600">
-          <a href="#inicio" className="hover:text-brand-black transition-colors">Inicio</a>
-          <a href="#nosotros" className="hover:text-brand-black transition-colors">Nosotros</a>
-          <a href="#servicios" className="hover:text-brand-black transition-colors">Servicios</a>
-          <a href="#equipo" className="hover:text-brand-black transition-colors">Equipo</a>
-          <a href="#contacto" className="hover:text-brand-black transition-colors">Contacto</a>
+        <div className="flex gap-8 text-sm font-medium opacity-80">
+          <a href="#inicio" className="hover:text-white transition-colors">Inicio</a>
+          <a href="#nosotros" className="hover:text-white transition-colors">Nosotros</a>
+          <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
+          <a href="#equipo" className="hover:text-white transition-colors">Equipo</a>
+          <a href="#contacto" className="hover:text-white transition-colors">Contacto</a>
         </div>
       </div>
-      <div className="text-center text-sm text-gray-500">
+      <div className="text-center text-sm opacity-40">
         <p>© {new Date().getFullYear()} Profesionales Jurídicos de Colombia. Todos los derechos reservados.</p>
       </div>
     </div>
@@ -702,44 +702,44 @@ export default function App() {
         <Features />
         
         {/* About Section */}
-        <section id="nosotros" className="py-24 bg-white">
+        <section id="nosotros" className="py-24 bg-brand-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="relative">
-                <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+                <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/5">
                   <img 
                     src="https://drive.google.com/thumbnail?id=1su-_xRQJZNzxwAJGK7FkEchaSIG04BBg&sz=w1000" 
                     alt="Oficina Legal" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-8 -right-8 bg-brand-black text-white p-8 rounded-2xl shadow-2xl hidden md:block">
+                <div className="absolute -bottom-8 -right-8 bg-white text-brand-black p-8 rounded-2xl shadow-2xl hidden md:block">
                   <p className="text-4xl font-serif font-bold mb-1">15+</p>
                   <p className="text-sm uppercase tracking-widest opacity-80">Años de Experiencia</p>
                 </div>
               </div>
               <div>
-                <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight text-gray-900">
+                <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight text-white">
                   Comprometidos con la Defensa de sus Derechos
                 </h2>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-400 text-lg mb-6 leading-relaxed">
                   Profesionales Jurídicos de Colombia es una firma de abogados líder en el país, 
                   caracterizada por su ética, rigurosidad jurídica y resultados efectivos. 
                   Nuestro equipo está conformado por especialistas en diversas ramas del derecho, 
                   lo que nos permite abordar casos complejos con una visión integral.
                 </p>
-                <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                <p className="text-gray-400 text-lg mb-8 leading-relaxed">
                   Nuestra misión es proporcionar soluciones legales innovadoras y personalizadas, 
                   siempre bajo los más altos estándares de calidad y honestidad.
                 </p>
                 <div className="grid grid-cols-2 gap-8">
-                  <div className="border-l-2 border-gray-200 pl-4">
-                    <h4 className="font-bold mb-1 text-gray-900">Misión</h4>
-                    <p className="text-sm text-gray-600">Defender con integridad y excelencia cada causa confiada.</p>
+                  <div className="border-l-2 border-white/20 pl-4">
+                    <h4 className="font-bold mb-1 text-white">Misión</h4>
+                    <p className="text-sm text-gray-400">Defender con integridad y excelencia cada causa confiada.</p>
                   </div>
-                  <div className="border-l-2 border-gray-200 pl-4">
-                    <h4 className="font-bold mb-1 text-gray-900">Visión</h4>
-                    <p className="text-sm text-gray-600">Ser el referente de confianza jurídica en toda Colombia.</p>
+                  <div className="border-l-2 border-white/20 pl-4">
+                    <h4 className="font-bold mb-1 text-white">Visión</h4>
+                    <p className="text-sm text-gray-400">Ser el referente de confianza jurídica en toda Colombia.</p>
                   </div>
                 </div>
               </div>

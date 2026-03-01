@@ -13,11 +13,11 @@
 
 @layer base {
   #root {
-    @apply min-h-screen font-sans text-gray-900 bg-white;
+    @apply min-h-screen font-sans text-brand-gray-light bg-brand-black;
   }
   
   h1, h2, h3, h4 {
-    @apply font-serif text-gray-900;
+    @apply font-serif text-white;
   }
 }
 
