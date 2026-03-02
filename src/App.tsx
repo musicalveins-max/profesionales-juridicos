@@ -210,7 +210,7 @@ const Hero = () => (
   <section id="inicio" className="relative h-[80vh] flex items-center overflow-hidden bg-brand-black">
     <div className="absolute inset-0 opacity-40">
       <img 
-        src="https://drive.google.com/thumbnail?id=1cIJagcmjiMNklG8B8U0Dsxwda5v7EFeS&sz=w1920" 
+        src="https://drive.google.com/thumbnail?id=1W46MLIgQWDOZAY9mtByNUdY0XuEjN2Nj&sz=w1920" 
         alt="Justicia" 
         className="w-full h-full object-cover"
       />
