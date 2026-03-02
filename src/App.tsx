@@ -528,8 +528,13 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/10 pb-12 mb-12">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg">
-            <Scale className="text-brand-black w-8 h-8" />
+          <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg overflow-hidden p-1 shadow-lg">
+            <img 
+              src="https://drive.google.com/thumbnail?id=1ksADq3wbC1-Tfwh1azmh-xvMlRYjpAGS&sz=w1000" 
+              alt="Logo Profesionales Jurídicos" 
+              className="w-full h-full object-contain"
+              referrerPolicy="no-referrer"
+            />
           </div>
           <div className="flex flex-col">
             <span className="text-xl font-serif font-bold">Profesionales Jurídicos</span>
