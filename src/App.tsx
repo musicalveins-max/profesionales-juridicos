@@ -54,7 +54,7 @@ const LAWYERS: Lawyer[] = [
       { niche: "Laboral", items: ["Derecho laboral"] },
       { niche: "Familia", items: ["Derecho de familia"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=1PGxEveizwhaCZ5ttBMCpDtQ_97uDPcV7&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=1KV5oasMem31GGqUbAOQIrqSa1LvwuqZk&sz=w1000"
   },
   {
     name: "Laura Tovar",
@@ -63,7 +63,7 @@ const LAWYERS: Lawyer[] = [
       { niche: "Civil e Inmobiliario", items: ["Pertenencia", "Divisorio", "Restitución de bien"] },
       { niche: "Familia", items: ["Divorcios", "Sucesiones"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=1D4_ADQd5J04G52yMBAepUQZQ7vQa_dQZ&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=1YF91nIqwOsppKAO5SPtsgOaS5K8uVuvf&sz=w1000"
   },
   {
     name: "Ingrid Ramírez",
@@ -73,7 +73,7 @@ const LAWYERS: Lawyer[] = [
       { niche: "Familia", items: ["Sucesiones"] },
       { niche: "Civil", items: ["Monitorios"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=1zm0jusx1gr13tUwCTYreAhojGbtF7USf&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=1Utao8cp3oUnqYZX4TFhcGCB5q6IRSLyJ&sz=w1000"
   },
   {
     name: "Andrés Peñaloza",
@@ -81,7 +81,7 @@ const LAWYERS: Lawyer[] = [
     specialties: [
       { niche: "Penal", items: ["Procesos penales", "Casación", "Representación de víctima", "Denuncias"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=1Tc1tzgh6xcnmISbssz2uECd5tsL0wUex&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=1R2sAFhT1etX2g2uGEmINA8VbkPZAOzKB&sz=w1000"
   },
   {
     name: "Sandra Fernández",
@@ -89,7 +89,7 @@ const LAWYERS: Lawyer[] = [
     specialties: [
       { niche: "Comercial y Financiero", items: ["Créditos de libranza", "Asesorías financieras", "Constitución de empresas"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=1LWxBimmpVaZxWHqxJi_CY1tP64I6EgWN&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=1XuzzW5hlDsgdfNSD_Lv-pabE84XV0JPb&sz=w1000"
   },
   {
     name: "Sonia Peña",
@@ -98,7 +98,7 @@ const LAWYERS: Lawyer[] = [
       { niche: "Civil", items: ["Rendición de cuentas", "Pertenencia", "Reivindicatorios"] },
       { niche: "Comercial", items: ["Cobro de obligaciones"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=10s9GMM9xMHjjplQnWj_r-9dyigLxFQtR&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=1_Tnua7b_tXuzbNlzi6opodrZ9bJ--kkz&sz=w1000"
   },
   {
     name: "Dahjer Ibarra",
@@ -108,7 +108,7 @@ const LAWYERS: Lawyer[] = [
       { niche: "Familia", items: ["Comisaría de familia"] },
       { niche: "Administrativo", items: ["Acciones de nulidad"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=1Izy1ZAoqtLd_9ob-faUaO8mgCnhwPNX0&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=1qns3FQoTYZulTnj3cWZhadJbHg50LHzz&sz=w1000"
   }
 ];
 
@@ -167,8 +167,13 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-24">
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white flex items-center justify-center rounded-lg shadow-lg shrink-0">
-            <Scale className="text-brand-black w-7 h-7 sm:w-10 sm:h-10" />
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white flex items-center justify-center rounded-lg shadow-lg shrink-0 overflow-hidden">
+            <img 
+              src="https://drive.google.com/thumbnail?id=1ksADq3wbC1-Tfwh1azmh-xvMlRYjpAGS&sz=w1000" 
+              alt="Logo Profesionales Jurídicos" 
+              className="w-full h-full object-contain p-1"
+              referrerPolicy="no-referrer"
+            />
           </div>
           <div className="flex flex-col">
             <span className="text-lg sm:text-2xl font-serif font-bold tracking-tight text-white leading-tight sm:leading-none">
@@ -344,11 +349,12 @@ const Team = () => (
             whileHover={{ y: -10 }}
             className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] bg-brand-black rounded-2xl overflow-hidden shadow-2xl border border-white/5 flex flex-col group"
           >
-            <div className="aspect-[4/5] overflow-hidden">
+            <div className="aspect-[4/5] overflow-hidden bg-white">
               <img 
                 src={lawyer.image} 
                 alt={lawyer.name} 
                 className="w-full h-full object-cover transition-all duration-500 object-top"
+                referrerPolicy="no-referrer"
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
