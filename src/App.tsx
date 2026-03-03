@@ -208,13 +208,13 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
 
 const Hero = () => (
   <section id="inicio" className="relative min-h-[60vh] md:h-[80vh] flex items-center overflow-hidden bg-brand-black">
-    <div className="absolute inset-0 opacity-30 flex items-center justify-center bg-brand-black">
+    <div className="absolute inset-0 opacity-30 flex items-start md:items-center justify-center bg-brand-black">
       <img 
         src="https://drive.google.com/thumbnail?id=1W46MLIgQWDOZAY9mtByNUdY0XuEjN2Nj&sz=w1920" 
         alt="Justicia" 
-        className="w-full h-full object-contain"
+        className="w-full h-full object-contain object-top md:object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-black/80 via-brand-black/40 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-black/60 via-transparent to-brand-black/60 md:bg-gradient-to-r md:from-brand-black/80 md:via-brand-black/40 md:to-transparent"></div>
     </div>
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
       <motion.div 
