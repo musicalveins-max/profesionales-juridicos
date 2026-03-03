@@ -176,10 +176,10 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
             />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg sm:text-2xl font-serif font-bold tracking-tight text-white leading-tight sm:leading-none">
+            <span className="text-xl sm:text-3xl font-serif font-bold tracking-tight text-white leading-tight sm:leading-none">
               Profesionales Jurídicos
             </span>
-            <span className="text-[10px] sm:text-sm font-sans font-medium text-gray-400 uppercase tracking-widest">
+            <span className="text-xs sm:text-base font-sans font-medium text-gray-400 uppercase tracking-widest">
               de Colombia
             </span>
           </div>
@@ -223,10 +223,7 @@ const Hero = () => (
         transition={{ duration: 0.8 }}
         className="max-w-3xl"
       >
-        <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6">
-          Abogados Profesionales Jurídicos de Colombia
-        </h1>
-        <p className="text-xl md:text-2xl font-light text-gray-300 mb-8 leading-relaxed">
+        <p className="text-xl md:text-3xl font-light text-gray-300 mb-8 leading-relaxed">
           Excelencia legal, integridad y compromiso con la justicia en cada caso. 
           Su tranquilidad jurídica es nuestra prioridad.
         </p>
