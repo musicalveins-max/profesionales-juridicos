@@ -590,57 +590,47 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
     }
   }, [isOpen]);
 
-  const initChat = async () => {
-    if (messages.length > 0 || isLoading) return; 
+  const initChat = async (force = false) => {
+    if (!force && (messages.length > 0 || isLoading)) return; 
     
     setIsLoading(true);
     try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
       const ai = new GoogleGenAI({ apiKey: apiKey });
       const chat = ai.chats.create({
         model: "gemini-3-flash-preview",
         config: {
-          systemInstruction: `Actúa como Catalina, la asistente virtual de un despacho jurídico profesional en Colombia.
-Tu objetivo es orientar al usuario, identificar su necesidad legal y preparar su caso para enviarlo a un abogado humano por WhatsApp.
-
-Sigue estas reglas estrictamente:
-1. Saluda de manera profesional y amable, presentándote como Catalina.
-2. Pregunta qué tipo de asesoría necesita (Familiar, Civil, Comercial, Penal, Inmobiliario o Seguridad y Salud en el Trabajo) Y pide que describa brevemente su caso.
-3. Haz máximo 2 preguntas adicionales si necesitas claridad sobre el caso.
-4. Una vez que el caso esté claro y hayas hecho tus preguntas de seguimiento, solicita su nombre completo y su número de teléfono para que un abogado pueda contactarlo.
-5. Cuando tengas toda la información, genera un resumen estructurado EXACTAMENTE con este formato:
-
+          systemInstruction: `Eres Catalina, asistente legal en Colombia. Tu misión es recoger datos para un abogado.
+Reglas:
+1. Saluda profesionalmente.
+2. Pregunta el área legal y una breve descripción.
+3. Pide nombre y teléfono.
+4. Al final, genera un resumen con este formato:
 RESUMEN PARA ABOGADO
-Nombre:
-Área legal:
-Teléfono:
-Descripción del caso:
-Nivel de urgencia: (Alta / Media / Baja)
+Nombre: [Nombre]
+Área: [Área]
+Teléfono: [Teléfono]
+Caso: [Breve descripción]
+Urgencia: [Alta/Media/Baja]
 
-Reglas importantes:
-- Sé claro y profesional.
-- No des asesoría jurídica profunda ni soluciones definitivas.
-- No inventes información.
-- No cambies el formato del resumen.
-- No agregues texto adicional después del resumen.
-- Mantén el resumen en máximo 6 líneas claras.
-- Usa lenguaje formal.
-- El resumen debe estar listo para enviarse por WhatsApp.
-- Si el usuario aún no quiere hablar con abogado, continúa orientando de forma general.
-- Tu prioridad es recopilar la información correcta y preparar el caso para que un abogado lo atienda rápidamente.`,
+No des consejos legales. Sé breve y formal.`,
         },
       });
       
       setChatSession(chat);
       
-      const response = await chat.sendMessage({ message: "Hola, inicia la conversación saludando profesionalmente y preséntate como Catalina." });
-      const text = response.text || '';
-      if (text) {
-        setMessages([{ role: 'assistant', content: text }]);
+      if (!force) {
+        const response = await chat.sendMessage({ message: "Hola, preséntate como Catalina y pregunta cómo puedes ayudar." });
+        const text = response.text || '';
+        if (text) {
+          setMessages([{ role: 'assistant', content: text }]);
+        }
       }
+      return chat;
     } catch (error) {
       console.error("Error initializing chat:", error);
-      setMessages([{ role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
+      if (!force) setMessages([{ role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
+      return null;
     } finally {
       setIsLoading(false);
     }
@@ -653,11 +643,11 @@ Reglas importantes:
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    // If session is lost, try to re-initialize
-    if (!chatSession) {
-      await initChat();
-      if (!chatSession) {
-        setMessages(prev => [...prev, { role: 'assistant', content: "Lo siento, estoy teniendo problemas para conectar. Por favor, intenta de nuevo en un momento." }]);
+    let currentSession = chatSession;
+    if (!currentSession) {
+      currentSession = await initChat(true);
+      if (!currentSession) {
+        setMessages(prev => [...prev, { role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
         return;
       }
     }
@@ -668,12 +658,12 @@ Reglas importantes:
     setIsLoading(true);
 
     try {
-      const response = await chatSession.sendMessage({ message: userMessage });
+      const response = await currentSession.sendMessage({ message: userMessage });
       const assistantMessage = response.text || '';
       if (assistantMessage) {
         setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
       } else {
-        throw new Error("Empty response from AI");
+        throw new Error("Empty response");
       }
     } catch (error) {
       console.error("Error sending message:", error);
