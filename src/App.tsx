@@ -585,7 +585,7 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
       // Small delay to ensure state is ready on all devices
       const timer = setTimeout(() => {
         initChat();
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
@@ -639,8 +639,7 @@ Reglas importantes:
       }
     } catch (error) {
       console.error("Error initializing chat:", error);
-      // Retry once if it fails
-      setTimeout(() => initChat(), 2000);
+      setMessages([{ role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
     } finally {
       setIsLoading(false);
     }
@@ -677,7 +676,7 @@ Reglas importantes:
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setMessages(prev => [...prev, { role: 'assistant', content: "Lo siento, ha ocurrido un error técnico. Por favor intenta de nuevo o contáctanos directamente por WhatsApp." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
     } finally {
       setIsLoading(false);
     }
@@ -725,13 +724,25 @@ Reglas importantes:
                     ? 'bg-white text-brand-black rounded-tr-none' 
                     : 'bg-white/5 text-gray-300 border border-white/10 rounded-tl-none'
                 }`}>
-                  <div className="whitespace-pre-wrap">{msg.content}</div>
+                  <div className="whitespace-pre-wrap">
+                    {msg.content === "ERROR_TECNICO_WHATSAPP" 
+                      ? "Lo siento, ha ocurrido un error técnico. Por favor intenta de nuevo o contáctanos directamente por WhatsApp para atenderte de inmediato." 
+                      : msg.content}
+                  </div>
                   {msg.role === 'assistant' && msg.content.includes('RESUMEN PARA ABOGADO') && (
                     <button 
                       onClick={() => sendToWhatsApp(msg.content)}
                       className="mt-3 w-full bg-[#25D366] text-white py-2 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
                     >
                       <MessageCircle size={16} fill="currentColor" /> Enviar a WhatsApp
+                    </button>
+                  )}
+                  {msg.role === 'assistant' && msg.content === "ERROR_TECNICO_WHATSAPP" && (
+                    <button 
+                      onClick={() => sendToWhatsApp("Hola, vengo de la página y el asistente virtual tuvo un error. Tengo una consulta legal.")}
+                      className="mt-3 w-full bg-[#25D366] text-white py-2 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                    >
+                      <MessageCircle size={16} fill="currentColor" /> Contactar por WhatsApp
                     </button>
                   )}
                 </div>
