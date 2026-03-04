@@ -437,7 +437,18 @@ Nivel de urgencia: Media`;
                 </div>
                 <div>
                   <h4 className="font-bold text-lg text-white">Teléfonos</h4>
-                  <p className="text-gray-400">WhatsApp: 321 202 1513</p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-gray-400">WhatsApp: 321 202 1513</p>
+                    <a 
+                      href="https://wa.me/573212021513?text=vengo%20de%20la%20pagina%20y%20tengo%20una%20consulta" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[#25D366] hover:scale-110 transition-transform flex items-center"
+                      title="Chatear por WhatsApp"
+                    >
+                      <MessageCircle size={24} fill="currentColor" />
+                    </a>
+                  </div>
                   <p className="text-gray-400">Llamadas: 314 381 8057</p>
                   <p className="text-gray-400">Fijo: (601) 404 2495</p>
                 </div>
@@ -571,18 +582,24 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
 
   React.useEffect(() => {
     if (isOpen && messages.length === 0 && !isLoading) {
-      initChat();
+      // Small delay to ensure state is ready on all devices
+      const timer = setTimeout(() => {
+        initChat();
+      }, 500);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
   const initChat = async () => {
-    if (messages.length > 0) return; // Guard against multiple initializations
+    if (messages.length > 0 || isLoading) return; 
     
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-    const chat = ai.chats.create({
-      model: "gemini-3-flash-preview",
-      config: {
-        systemInstruction: `Actúa como Catalina, la asistente virtual de un despacho jurídico profesional en Colombia.
+    setIsLoading(true);
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const chat = ai.chats.create({
+        model: "gemini-3-flash-preview",
+        config: {
+          systemInstruction: `Actúa como Catalina, la asistente virtual de un despacho jurídico profesional en Colombia.
 Tu objetivo es orientar al usuario, identificar su necesidad legal y preparar su caso para enviarlo a un abogado humano por WhatsApp.
 
 Sigue estas reglas estrictamente:
@@ -610,17 +627,20 @@ Reglas importantes:
 - El resumen debe estar listo para enviarse por WhatsApp.
 - Si el usuario aún no quiere hablar con abogado, continúa orientando de forma general.
 - Tu prioridad es recopilar la información correcta y preparar el caso para que un abogado lo atienda rápidamente.`,
-      },
-    });
-    setChatSession(chat);
-    
-    // Initial greeting
-    setIsLoading(true);
-    try {
+        },
+      });
+      
+      setChatSession(chat);
+      
       const response = await chat.sendMessage({ message: "Hola, inicia la conversación saludando profesionalmente y preséntate como Catalina." });
-      setMessages([{ role: 'assistant', content: response.text || '' }]);
+      const text = response.text || '';
+      if (text) {
+        setMessages([{ role: 'assistant', content: text }]);
+      }
     } catch (error) {
       console.error("Error initializing chat:", error);
+      // Retry once if it fails
+      setTimeout(() => initChat(), 2000);
     } finally {
       setIsLoading(false);
     }
@@ -631,7 +651,16 @@ Reglas importantes:
   };
 
   const handleSend = async () => {
-    if (!input.trim() || !chatSession || isLoading) return;
+    if (!input.trim() || isLoading) return;
+
+    // If session is lost, try to re-initialize
+    if (!chatSession) {
+      await initChat();
+      if (!chatSession) {
+        setMessages(prev => [...prev, { role: 'assistant', content: "Lo siento, estoy teniendo problemas para conectar. Por favor, intenta de nuevo en un momento." }]);
+        return;
+      }
+    }
 
     const userMessage = input.trim();
     setInput('');
@@ -641,10 +670,14 @@ Reglas importantes:
     try {
       const response = await chatSession.sendMessage({ message: userMessage });
       const assistantMessage = response.text || '';
-      setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
+      if (assistantMessage) {
+        setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
+      } else {
+        throw new Error("Empty response from AI");
+      }
     } catch (error) {
       console.error("Error sending message:", error);
-      setMessages(prev => [...prev, { role: 'assistant', content: "Lo siento, ha ocurrido un error. Por favor intenta de nuevo." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Lo siento, ha ocurrido un error técnico. Por favor intenta de nuevo o contáctanos directamente por WhatsApp." }]);
     } finally {
       setIsLoading(false);
     }
