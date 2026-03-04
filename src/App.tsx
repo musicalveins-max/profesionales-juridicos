@@ -569,7 +569,15 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
     scrollToBottom();
   }, [messages]);
 
+  React.useEffect(() => {
+    if (isOpen && messages.length === 0 && !isLoading) {
+      initChat();
+    }
+  }, [isOpen]);
+
   const initChat = async () => {
+    if (messages.length > 0) return; // Guard against multiple initializations
+    
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     const chat = ai.chats.create({
       model: "gemini-3-flash-preview",
@@ -619,9 +627,6 @@ Reglas importantes:
   };
 
   const handleOpen = () => {
-    if (!isOpen && messages.length === 0) {
-      initChat();
-    }
     setIsOpen(!isOpen);
   };
 
