@@ -12,21 +12,18 @@ import {
   MapPin, 
   MessageCircle, 
   Scale, 
-  Users, 
   Briefcase, 
   ChevronRight,
   Clock,
   ShieldCheck,
   Heart,
   Building2,
-  HardHat,
   Gavel,
   Home,
   ShieldAlert,
   Send,
   X,
-  Loader2,
-  User
+  Loader2
 } from 'lucide-react';
 
 // --- Types ---
@@ -114,47 +111,123 @@ const LAWYERS: Lawyer[] = [
 
 const SERVICES = [
   {
-    niche: "Derecho de Familia y Personas",
+    niche: "Derecho de Familia",
     items: [
       {
-        title: "Familiar",
-        description: "Todo lo relacionado con el derecho de familia: demanda de alimentos, divorcio, custodia, liquidación de sociedad conyugal, entre otros. Contamos con abogados especializados en derecho de familia, dispuestos a ayudarle y asesorarle en cada etapa de su proceso legal.",
+        title: "Derecho de Familia",
+        description: "Entendemos que los procesos de familia requieren no solo rigor legal, sino también una alta sensibilidad humana. Nuestro equipo le brinda acompañamiento integral en la resolución de conflictos y la garantía de los derechos de nuestros clientes.",
+        highlights: [
+          "Divorcios y cesación de efectos civiles de matrimonio religioso",
+          "Liquidación de sociedad conyugal",
+          "Cuota de alimentos, custodia y régimen de visitas",
+          "Investigación e impugnación de la paternidad",
+          "Permiso de salida del país del menor",
+          "Unión marital de hecho y liquidación patrimonial",
+          "Procesos y trámites de sucesión"
+        ],
         icon: Heart
-      },
+      }
+    ]
+  },
+  {
+    niche: "Derecho Civil",
+    items: [
       {
-        title: "Civil",
-        description: "Contamos con abogados especializados en derecho civil, preparados para brindar asesoría en relaciones civiles y privadas. Ofrecemos soluciones efectivas a situaciones que afectan la vida cotidiana, garantizando acompañamiento profesional y oportuno.",
+        title: "Derecho Civil",
+        description: "Soluciones legales para sus relaciones privadas y contratos. Brindamos asesoría estratégica en los asuntos que afectan su vida cotidiana y sus negocios civiles, enfocándonos en prevenir riesgos y ofrecer soluciones efectivas.",
+        highlights: [
+          "Elaboración, revisión y ejecución de contratos civiles",
+          "Procesos de pertenencia y divisorios",
+          "Cobro de obligaciones y títulos valores",
+          "Indemnizaciones por daños y perjuicios",
+          "Responsabilidad civil contractual y extracontractual"
+        ],
         icon: Gavel
       }
     ]
   },
   {
-    niche: "Derecho Empresarial y Laboral",
+    niche: "Derecho Empresarial, Comercial y Laboral",
     items: [
       {
-        title: "Comercial",
-        description: "Asesoría legal para su negocio. Nuestros abogados cuentan con la experiencia necesaria para orientarle y representarle en asuntos relacionados con su empresa. Brindamos acompañamiento permanente en todo lo relacionado con el área comercial.",
+        title: "Derecho Comercial",
+        description: "Blindaje legal para el crecimiento de su negocio. Orientamos a emprendedores y empresas en la estructuración legal de sus actividades mercantiles con una visión estratégica y preventiva.",
+        highlights: [
+          "Estructuración legal de actividades mercantiles",
+          "Representación de intereses comerciales",
+          "Asesoría estratégica preventiva"
+        ],
         icon: Building2
       },
       {
-        title: "Seguridad y Salud en el Trabajo",
-        description: "Le asesoramos en la implementación y creación del Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST). Nuestro objetivo es prevenir riesgos legales y evitar inconvenientes futuros relacionados con la seguridad social de sus trabajadores.",
-        icon: HardHat
+        title: "Derecho Laboral",
+        description: "Asesoría integral en la relación empleador-trabajador, garantizando el cumplimiento de la normativa vigente y la protección de los intereses de nuestros clientes.",
+        highlights: [
+          "Contratación de personal (términos fijos, indefinidos, obra o labor)",
+          "Despido sin justa causa e indemnizaciones",
+          "Reclamación de acreencias laborales y prestaciones sociales",
+          "Defensa en procesos de acoso laboral y estabilidad reforzada",
+          "Asistencia profesional en audiencias y demandas ordinarias"
+        ],
+        icon: Briefcase
+      },
+      {
+        title: "Acciones Constitucionales",
+        description: "Protegemos a su empresa frente a mecanismos de protección de derechos fundamentales, asegurando respuestas técnicas y fundamentadas.",
+        highlights: [
+          "Contestación técnica de Acciones de Tutela",
+          "Trámite y respuesta oportuna a Derechos de Petición",
+          "Prevención de sanciones y silencios administrativos"
+        ],
+        icon: ShieldCheck
       }
     ]
   },
   {
-    niche: "Derecho de Propiedad y Penal",
+    niche: "Derecho Inmobiliario",
     items: [
       {
-        title: "Inmobiliario",
-        description: "Ofrecemos asesoría en servicios inmobiliarios, desde el saneamiento de la propiedad de inmuebles hasta cobros de cuotas de administración, entre otros. Con nuestro equipo contará con el respaldo necesario para llevar sus procesos a buen término.",
+        title: "Derecho Inmobiliario",
+        description: "Seguridad jurídica para su inversión y propiedad raíz. Ofrecemos respaldo sólido en trámites relacionados con bienes inmuebles, desde la adquisición hasta la administración.",
+        highlights: [
+          "Saneamiento y estudio de títulos de propiedad",
+          "Procesos de restitución de inmueble arrendado",
+          "Cobro jurídico de cuotas de administración (Propiedad Horizontal)",
+          "Asesoría en compraventa ante Notariado y Registro"
+        ],
         icon: Home
-      },
+      }
+    ]
+  },
+  {
+    niche: "Derecho Penal",
+    items: [
       {
-        title: "Penal",
-        description: "Expertos en el manejo de cualquier situación legal en materia penal. Nuestros abogados penalistas le brindarán asesoría integral y representación legal adecuada según el caso presentado, protegiendo sus derechos en todo momento.",
+        title: "Derecho Penal",
+        description: "Defensa técnica y representación legal de alta complejidad. Brindamos asesoría integral tanto en la defensa como en la representación de víctimas, bajo los más altos estándares éticos.",
+        highlights: [
+          "Defensa técnica en procesos penales",
+          "Representación de víctimas en incidentes de reparación",
+          "Asesoría en delitos contra el patrimonio y administración pública",
+          "Acompañamiento en diligencias ante la Fiscalía"
+        ],
         icon: ShieldAlert
+      }
+    ]
+  },
+  {
+    niche: "Derecho de Insolvencia y Reorganización",
+    items: [
+      {
+        title: "Insolvencia de Persona Natural",
+        description: "Recupere su tranquilidad financiera y proteja su patrimonio. Brindamos soluciones legales definitivas para personas que enfrentan situaciones de crisis económica o cesación de pagos.",
+        highlights: [
+          "Negociación de deudas ante centros de conciliación",
+          "Diseño de acuerdos de pago para suspender procesos y remates",
+          "Convalidación judicial de acuerdos logrados",
+          "Asesoría técnica en procesos de liquidación patrimonial"
+        ],
+        icon: Scale
       }
     ]
   }
@@ -207,41 +280,14 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
 );
 
 const Hero = () => (
-  <section id="inicio" className="relative min-h-[60vh] md:h-[80vh] flex items-center overflow-hidden bg-brand-black">
-    <div className="absolute inset-0 opacity-30 flex items-start md:items-center justify-center bg-brand-black">
+  <section id="inicio" className="relative min-h-[40vh] md:min-h-[60vh] lg:h-[80vh] flex items-center overflow-hidden bg-brand-black">
+    <div className="absolute inset-0 flex items-center justify-center bg-brand-black">
       <img 
-        src="https://drive.google.com/thumbnail?id=1W46MLIgQWDOZAY9mtByNUdY0XuEjN2Nj&sz=w1920" 
-        alt="Justicia" 
-        className="w-full h-full object-contain object-top md:object-center"
+        src="https://drive.google.com/thumbnail?id=1su-_xRQJZNzxwAJGK7FkEchaSIG04BBg&sz=w1920" 
+        alt="Hero" 
+        className="w-full h-full object-contain"
+        referrerPolicy="no-referrer"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-black/60 via-transparent to-brand-black/60 md:bg-gradient-to-r md:from-brand-black/80 md:via-brand-black/40 md:to-transparent"></div>
-    </div>
-    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-3xl"
-      >
-        <p className="text-xl md:text-3xl font-light text-gray-300 mb-8 leading-relaxed">
-          Excelencia legal, integridad y compromiso con la justicia en cada caso. 
-          Su tranquilidad jurídica es nuestra prioridad.
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <a 
-            href="#contacto" 
-            className="bg-brand-accent text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-brand-accent/80 transition-all shadow-xl flex items-center gap-2"
-          >
-            Consultar Ahora <ChevronRight size={20} />
-          </a>
-          <a 
-            href="#equipo" 
-            className="border border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all"
-          >
-            Ver Nuestro Equipo
-          </a>
-        </div>
-      </motion.div>
     </div>
   </section>
 );
@@ -316,9 +362,22 @@ const Services = () => (
                     <service.icon size={32} />
                   </div>
                   <h3 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-400 leading-relaxed mb-6">
                     {service.description}
                   </p>
+                  {service.highlights && (
+                    <div className="space-y-3">
+                      <p className="text-sm font-bold text-brand-accent uppercase tracking-wider">Servicios destacados:</p>
+                      <ul className="space-y-2">
+                        {service.highlights.map((highlight, hIdx) => (
+                          <li key={hIdx} className="flex items-start gap-3 text-sm text-gray-400">
+                            <span className="text-brand-accent mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-accent shrink-0" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -806,9 +865,10 @@ export default function App() {
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/5">
                   <img 
-                    src="https://drive.google.com/thumbnail?id=1su-_xRQJZNzxwAJGK7FkEchaSIG04BBg&sz=w1000" 
+                    src="https://drive.google.com/thumbnail?id=1QQFLQp6jud_u2EjABpaqpiib07v5iHtl&sz=w1000" 
                     alt="Oficina Legal" 
                     className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="absolute -bottom-8 -right-8 bg-white text-brand-black p-8 rounded-2xl shadow-2xl hidden md:block">
@@ -825,10 +885,6 @@ export default function App() {
                   caracterizada por su ética, rigurosidad jurídica y resultados efectivos. 
                   Nuestro equipo está conformado por especialistas en diversas ramas del derecho, 
                   lo que nos permite abordar casos complejos con una visión integral.
-                </p>
-                <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                  Nuestra misión es proporcionar soluciones legales innovadoras y personalizadas, 
-                  siempre bajo los más altos estándares de calidad y honestidad.
                 </p>
                 <div className="grid grid-cols-2 gap-8">
                   <div className="border-l-2 border-white/20 pl-4">
