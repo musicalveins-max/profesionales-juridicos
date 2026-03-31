@@ -47,9 +47,7 @@ const LAWYERS: Lawyer[] = [
     name: "Álvaro Tovar",
     role: "Representante Legal Abogado",
     specialties: [
-      { niche: "Civil", items: ["Contratos", "Obligaciones", "Propiedad horizontal", "Cobro de cartera"] },
-      { niche: "Laboral", items: ["Derecho laboral"] },
-      { niche: "Familia", items: ["Derecho de familia"] }
+      { niche: "Especialidad", items: ["Derecho laboral", "Derecho civil", "Derecho de familia"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1KV5oasMem31GGqUbAOQIrqSa1LvwuqZk&sz=w1000"
   },
@@ -57,8 +55,7 @@ const LAWYERS: Lawyer[] = [
     name: "Laura Tovar",
     role: "Abogada",
     specialties: [
-      { niche: "Civil e Inmobiliario", items: ["Pertenencia", "Divisorio", "Restitución de bien"] },
-      { niche: "Familia", items: ["Divorcios", "Sucesiones"] }
+      { niche: "Especialidad", items: ["Derecho de familia", "Derecho civil"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1YF91nIqwOsppKAO5SPtsgOaS5K8uVuvf&sz=w1000"
   },
@@ -66,9 +63,7 @@ const LAWYERS: Lawyer[] = [
     name: "Ingrid Ramírez",
     role: "Abogada",
     specialties: [
-      { niche: "Laboral", items: ["Procesos laborales", "Pensiones", "Indemnizaciones"] },
-      { niche: "Familia", items: ["Sucesiones"] },
-      { niche: "Civil", items: ["Monitorios"] }
+      { niche: "Especialidad", items: ["Trámites notariales"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1Utao8cp3oUnqYZX4TFhcGCB5q6IRSLyJ&sz=w1000"
   },
@@ -76,7 +71,7 @@ const LAWYERS: Lawyer[] = [
     name: "Andrés Peñaloza",
     role: "Abogado",
     specialties: [
-      { niche: "Penal", items: ["Procesos penales", "Casación", "Representación de víctima", "Denuncias"] }
+      { niche: "Especialidad", items: ["Derecho penal"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1R2sAFhT1etX2g2uGEmINA8VbkPZAOzKB&sz=w1000"
   },
@@ -84,7 +79,7 @@ const LAWYERS: Lawyer[] = [
     name: "Sandra Fernández",
     role: "Abogada",
     specialties: [
-      { niche: "Comercial y Financiero", items: ["Créditos de libranza", "Asesorías financieras", "Constitución de empresas"] }
+      { niche: "Especialidad", items: ["Derecho comercial", "Financiera"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1XuzzW5hlDsgdfNSD_Lv-pabE84XV0JPb&sz=w1000"
   },
@@ -92,8 +87,7 @@ const LAWYERS: Lawyer[] = [
     name: "Sonia Peña",
     role: "Abogada",
     specialties: [
-      { niche: "Civil", items: ["Rendición de cuentas", "Pertenencia", "Reivindicatorios"] },
-      { niche: "Comercial", items: ["Cobro de obligaciones"] }
+      { niche: "Especialidad", items: ["Derecho civil", "Derecho de familia"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1_Tnua7b_tXuzbNlzi6opodrZ9bJ--kkz&sz=w1000"
   },
@@ -101,9 +95,7 @@ const LAWYERS: Lawyer[] = [
     name: "Dahjer Ibarra",
     role: "Abogado",
     specialties: [
-      { niche: "Penal", items: ["Representación de víctima"] },
-      { niche: "Familia", items: ["Comisaría de familia"] },
-      { niche: "Administrativo", items: ["Acciones de nulidad"] }
+      { niche: "Especialidad", items: ["Derecho laboral"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1qns3FQoTYZulTnj3cWZhadJbHg50LHzz&sz=w1000"
   }
@@ -147,7 +139,7 @@ const SERVICES = [
     ]
   },
   {
-    niche: "Derecho Empresarial, Comercial y Laboral",
+    niche: "Derecho Empresarial, Comercial",
     items: [
       {
         title: "Derecho Comercial",
@@ -252,7 +244,7 @@ const Navbar = ({ onConsultClick }: { onConsultClick: () => void }) => (
             <span className="text-xl sm:text-3xl font-serif font-bold tracking-tight text-white leading-tight sm:leading-none">
               Profesionales Jurídicos
             </span>
-            <span className="text-xs sm:text-base font-sans font-medium text-gray-400 uppercase tracking-widest">
+            <span className="text-xl sm:text-3xl font-serif font-bold tracking-tight text-white leading-tight sm:leading-none">
               de Colombia
             </span>
           </div>
@@ -605,8 +597,8 @@ const Footer = () => (
             />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-serif font-bold">Profesionales Jurídicos</span>
-            <span className="text-xs font-sans uppercase tracking-widest opacity-60">de Colombia</span>
+            <span className="text-xl font-serif font-bold text-white">Profesionales Jurídicos</span>
+            <span className="text-xl font-serif font-bold text-white">de Colombia</span>
           </div>
         </div>
         <div className="flex gap-8 text-sm font-medium opacity-80">
