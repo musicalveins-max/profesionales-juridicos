@@ -63,7 +63,7 @@ const LAWYERS: Lawyer[] = [
     name: "Ingrid Ramírez",
     role: "Abogada",
     specialties: [
-      { niche: "Especialidad", items: ["Trámites notariales"] }
+      { niche: "Especialidad", items: ["Derecho notarial", "Derecho laboral"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1Utao8cp3oUnqYZX4TFhcGCB5q6IRSLyJ&sz=w1000"
   },
