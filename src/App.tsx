@@ -105,7 +105,7 @@ const LAWYERS: Lawyer[] = [
     specialties: [
       { niche: "Especialidad", items: ["Derecho de insolvencia"] }
     ],
-    image: "https://drive.google.com/thumbnail?id=1TeKKbbPXuSGHNzEJWR6vSuoZyzQnWXC4&sz=w1000"
+    image: "https://drive.google.com/thumbnail?id=13b5ySTqHcLbq3uEYMh2_36o8tVAIWRh-&sz=w1000"
   }
 ];
 
