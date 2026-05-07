@@ -103,7 +103,7 @@ const LAWYERS: Lawyer[] = [
     name: "Viviana Judith Fonseca Romero",
     role: "Abogada",
     specialties: [
-      { niche: "Especialidad", items: ["Derecho de insolvencia"] }
+      { niche: "Especialidad", items: ["Insolvencia y pequeño comerciante"] }
     ],
     image: "https://drive.google.com/thumbnail?id=13b5ySTqHcLbq3uEYMh2_36o8tVAIWRh-&sz=w1000"
   }
@@ -216,7 +216,7 @@ const SERVICES = [
     ]
   },
   {
-    niche: "Derecho de Insolvencia y Reorganización",
+    niche: "Insolvencia y pequeño comerciante",
     items: [
       {
         title: "Insolvencia de Persona Natural",
@@ -301,7 +301,7 @@ const Features = () => (
             <ShieldCheck size={28} />
           </div>
           <h3 className="text-2xl font-serif font-bold text-white">Confianza Total</h3>
-          <p className="text-gray-400 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed text-justify">
             Manejamos cada caso con la máxima discreción y profesionalismo, 
             asegurando que sus intereses estén siempre protegidos.
           </p>
@@ -311,7 +311,7 @@ const Features = () => (
             <Clock size={28} />
           </div>
           <h3 className="text-2xl font-serif font-bold text-white">Respuesta Ágil</h3>
-          <p className="text-gray-400 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed text-justify">
             Entendemos que el tiempo es crucial en asuntos legales. 
             Brindamos asesoría oportuna y efectiva.
           </p>
@@ -321,7 +321,7 @@ const Features = () => (
             <Briefcase size={28} />
           </div>
           <h3 className="text-2xl font-serif font-bold text-white">Experiencia Multidisciplinaria</h3>
-          <p className="text-gray-400 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed text-justify">
             Contamos con especialistas en diversas áreas del derecho para 
             ofrecer una solución integral a sus necesidades.
           </p>
@@ -337,7 +337,7 @@ const Services = () => (
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Nuestros Servicios</h2>
         <div className="w-24 h-1 bg-brand-accent mx-auto mb-6"></div>
-        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg text-justify">
           Soluciones legales integrales adaptadas a sus necesidades específicas, organizadas por especialidad.
         </p>
       </div>
@@ -362,7 +362,7 @@ const Services = () => (
                     <service.icon size={32} />
                   </div>
                   <h3 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h3>
-                  <p className="text-gray-400 leading-relaxed mb-6">
+                  <p className="text-gray-400 leading-relaxed mb-6 text-justify">
                     {service.description}
                   </p>
                   {service.highlights && (
@@ -473,8 +473,8 @@ Nivel de urgencia: Media`;
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-4xl font-serif font-bold mb-8 text-white">Contáctenos</h2>
-            <p className="text-gray-400 text-lg mb-12 leading-relaxed">
+            <h2 className="text-4xl font-serif font-bold mb-8 text-white text-justify">Contáctenos</h2>
+            <p className="text-gray-400 text-lg mb-12 leading-relaxed text-justify">
               Estamos listos para escuchar su caso y brindarle la mejor asesoría legal. 
               Visítenos en nuestra oficina o comuníquese por cualquiera de nuestros canales.
             </p>
@@ -485,8 +485,18 @@ Nivel de urgencia: Media`;
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-white">Ubicación</h4>
+                  <h4 className="font-bold text-lg text-white">Sede Bogotá</h4>
                   <p className="text-gray-400">Barrio Restrepo, Bogotá D.C.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-brand-accent text-white rounded-full flex items-center justify-center shrink-0">
+                  <MapPin size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-white">Sede Cajicá</h4>
+                  <p className="text-gray-400">Carrera 6 #2-15 segundo piso</p>
                 </div>
               </div>
               
@@ -496,20 +506,34 @@ Nivel de urgencia: Media`;
                 </div>
                 <div>
                   <h4 className="font-bold text-lg text-white">Teléfonos</h4>
-                  <div className="flex items-center gap-2">
-                    <p className="text-gray-400">WhatsApp: 321 202 1513</p>
-                    <a 
-                      href="https://wa.me/573212021513?text=vengo%20de%20la%20pagina%20y%20tengo%20una%20consulta" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-[#25D366] hover:scale-110 transition-transform flex items-center"
-                      title="Chatear por WhatsApp"
-                    >
-                      <MessageCircle size={24} fill="currentColor" />
-                    </a>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <p className="text-gray-400">Bogotá: 321 202 1513</p>
+                      <a 
+                        href="https://wa.me/573212021513?text=vengo%20de%20la%20pagina%20y%20tengo%20una%20consulta" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-[#25D366] hover:scale-110 transition-transform flex items-center"
+                        title="Chatear por WhatsApp"
+                      >
+                        <MessageCircle size={24} fill="currentColor" />
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <p className="text-gray-400">Cajicá: 324 514 9290</p>
+                      <a 
+                        href="https://wa.me/573245149290?text=vengo%20de%20la%20pagina%20y%20tengo%20una%20consulta" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-[#25D366] hover:scale-110 transition-transform flex items-center"
+                        title="Chatear por WhatsApp"
+                      >
+                        <MessageCircle size={24} fill="currentColor" />
+                      </a>
+                    </div>
+                    <p className="text-gray-400">Llamadas: 314 381 8057</p>
+                    <p className="text-gray-400">Fijo: (601) 404 2495</p>
                   </div>
-                  <p className="text-gray-400">Llamadas: 314 381 8057</p>
-                  <p className="text-gray-400">Fijo: (601) 404 2495</p>
                 </div>
               </div>
               
@@ -877,10 +901,10 @@ export default function App() {
                 </div>
               </div>
               <div>
-                <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight text-white">
+                <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight text-white text-justify">
                   Comprometidos con la Defensa de sus Derechos
                 </h2>
-                <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-400 text-lg mb-6 leading-relaxed text-justify">
                   Profesionales Jurídicos de Colombia es una firma de abogados líder en el país, 
                   caracterizada por su ética, rigurosidad jurídica y resultados efectivos. 
                   Nuestro equipo está conformado por especialistas en diversas ramas del derecho, 
