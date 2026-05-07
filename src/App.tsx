@@ -98,6 +98,14 @@ const LAWYERS: Lawyer[] = [
       { niche: "Especialidad", items: ["Derecho laboral"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1qns3FQoTYZulTnj3cWZhadJbHg50LHzz&sz=w1000"
+  },
+  {
+    name: "Viviana Judith Fonseca Romero",
+    role: "Abogada",
+    specialties: [
+      { niche: "Especialidad", items: ["Derecho de insolvencia"] }
+    ],
+    image: "https://drive.google.com/thumbnail?id=1TeKKbbPXuSGHNzEJWR6vSuoZyzQnWXC4&sz=w1000"
   }
 ];
 
