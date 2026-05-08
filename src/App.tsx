@@ -23,7 +23,8 @@ import {
   ShieldAlert,
   Send,
   X,
-  Loader2
+  Loader2,
+  CreditCard
 } from 'lucide-react';
 
 // --- Types ---
@@ -228,6 +229,21 @@ const SERVICES = [
           "Asesoría técnica en procesos de liquidación patrimonial"
         ],
         icon: Scale
+      }
+    ]
+  },
+  {
+    niche: "Eliminación Reportes Negativos (DATACREDITO - CIFIN)",
+    items: [
+      {
+        title: "Eliminación Reportes Negativos",
+        description: "Recupere su historial crediticio. Brindamos soluciones legales definitivas para personas que tengan reportes negativos o castigos en las centrales de riesgo.",
+        highlights: [
+          "Negociación de deudas ante las entidades",
+          "Eliminación de reportes por Indebida Notificación",
+          "Eliminación de reportes por Caducidad"
+        ],
+        icon: CreditCard
       }
     ]
   }
