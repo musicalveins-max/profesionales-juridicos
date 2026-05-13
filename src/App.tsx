@@ -694,7 +694,10 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
     
     setIsLoading(true);
     try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("GEMINI_API_KEY not found in environment");
+      }
       const ai = new GoogleGenAI({ apiKey: apiKey });
       const chat = ai.chats.create({
         model: "gemini-3-flash-preview",
