@@ -685,11 +685,15 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
     
     setIsLoading(true);
     try {
+      // Verificación de la API Key para depuración en producción (Vercel)
+      console.log('Verificando Key:', import.meta.env.VITE_GEMINI_API_KEY ? 'Detectada' : 'No detectada');
+      
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
       if (!apiKey) {
-        console.error("VITE_GEMINI_API_KEY no detectada. Asegúrate de configurarla en las variables de entorno de Vercel (con el prefijo VITE_).");
-        throw new Error("VITE_GEMINI_API_KEY not found in environment");
+        console.error("Error: VITE_GEMINI_API_KEY no detectada");
+        throw new Error("VITE_GEMINI_API_KEY no configurada. Por favor, verifique las variables de entorno en Vercel.");
       }
+      
       const ai = new GoogleGenAI({ apiKey: apiKey });
       const chat = ai.chats.create({
         model: "gemini-3-flash-preview",
