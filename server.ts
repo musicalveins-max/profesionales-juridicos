@@ -25,7 +25,6 @@ async function startServer() {
 
       const ai = new GoogleGenAI({ apiKey });
       
-      // Prepare history from message list if provided
       const history = (messages || [])
         .filter((msg: any) => msg.role !== 'system')
         .map((msg: any) => ({
@@ -33,8 +32,12 @@ async function startServer() {
           parts: [{ text: msg.content }],
         }));
 
-      const chat = ai.chats.create({
+      const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
+        contents: [
+          ...history,
+          { role: 'user', parts: [{ text: message }] }
+        ],
         config: {
           systemInstruction: `Eres Catalina, asistente legal en Colombia. Tu misión es recoger datos para un abogado.
 Reglas:
@@ -51,20 +54,9 @@ Urgencia: [Alta/Media/Baja]
 
 No des consejos legales. Sé breve y formal.`,
         },
-        // Note: SDK might not support history in ai.chats.create direct call in some versions 
-        // but the skill shows it being used without history. 
-        // If history is needed, I might need to send them as separate messages or use a different pattern.
-        // Actually, the skill doesn't show history in ai.chats.create.
       });
 
-      // If there's history, we might need to "replay" it if the SDK doesn't support passing it to create.
-      // But usually, startChat/chats.create supports history.
-      // Let's stick to the skill's example first.
-      
-      const result = await chat.sendMessage({ message: message });
-      const responseText = result.text; // Property, not method
-
-      res.json({ text: responseText });
+      res.json({ text: response.text });
     } catch (error: any) {
       console.error("Error in /api/chat:", error);
       res.status(500).json({ error: error.message || "Internal Server Error" });
