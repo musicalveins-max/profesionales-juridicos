@@ -80,7 +80,7 @@ const LAWYERS: Lawyer[] = [
     name: "Sandra Fernández",
     role: "Abogada",
     specialties: [
-      { niche: "Especialidad", items: ["Derecho comercial", "Financiera"] }
+      { niche: "Especialidad", items: ["Derecho comercial", "Asesora financiera"] }
     ],
     image: "https://drive.google.com/thumbnail?id=1XuzzW5hlDsgdfNSD_Lv-pabE84XV0JPb&sz=w1000"
   },
@@ -377,16 +377,16 @@ const Services = () => (
                   <div className="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent group-hover:text-white transition-colors">
                     <service.icon size={32} />
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-white mb-4">{service.title}</h3>
-                  <p className="text-gray-400 leading-relaxed mb-6 text-justify">
+                  <h3 className="text-3xl font-serif font-bold text-white mb-4">{service.title}</h3>
+                  <p className="text-gray-400 text-lg leading-relaxed mb-6 text-justify">
                     {service.description}
                   </p>
                   {service.highlights && (
                     <div className="space-y-3">
-                      <p className="text-sm font-bold text-brand-accent uppercase tracking-wider">Servicios destacados:</p>
+                      <p className="text-base font-bold text-brand-accent uppercase tracking-wider">Servicios destacados:</p>
                       <ul className="space-y-2">
                         {service.highlights.map((highlight, hIdx) => (
-                          <li key={hIdx} className="flex items-start gap-3 text-sm text-gray-400">
+                          <li key={hIdx} className="flex items-start gap-3 text-base text-gray-400">
                             <span className="text-brand-accent mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-accent shrink-0" />
                             <span>{highlight}</span>
                           </li>
@@ -431,17 +431,17 @@ const Team = () => (
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-serif font-bold mb-1 text-white group-hover:text-brand-accent transition-colors">{lawyer.name}</h3>
-              <p className="text-sm font-medium text-gray-400 mb-4 uppercase tracking-wider">{lawyer.role}</p>
+              <h3 className="text-2xl font-serif font-bold mb-1 text-white group-hover:text-brand-accent transition-colors">{lawyer.name}</h3>
+              <p className="text-base font-medium text-gray-400 mb-4 uppercase tracking-wider">{lawyer.role}</p>
               <div className="space-y-4 mt-auto">
                 {lawyer.specialties.map((group, gIdx) => (
                   <div key={gIdx} className="space-y-1">
-                    <p className="text-[10px] font-bold text-brand-accent uppercase tracking-tighter opacity-80">
+                    <p className="text-xs font-bold text-brand-accent uppercase tracking-tighter opacity-80">
                       {group.niche}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {group.items.map((item, iIdx) => (
-                        <span key={iIdx} className="text-[10px] bg-white/5 px-2 py-0.5 rounded-md text-gray-300 border border-white/10 group-hover:border-brand-accent/30">
+                        <span key={iIdx} className="text-xs bg-white/5 px-2 py-0.5 rounded-md text-gray-300 border border-white/10 group-hover:border-brand-accent/30">
                           {item}
                         </span>
                       ))}
@@ -502,7 +502,7 @@ Nivel de urgencia: Media`;
                 </div>
                 <div>
                   <h4 className="font-bold text-lg text-white">Sede Bogotá</h4>
-                  <p className="text-gray-400">Barrio Restrepo, Bogotá D.C.</p>
+                  <p className="text-gray-400">Carrera 24 No 14-00 Sur piso 5</p>
                 </div>
               </div>
 
@@ -548,20 +548,11 @@ Nivel de urgencia: Media`;
                       </a>
                     </div>
                     <p className="text-gray-400">Llamadas: 314 381 8057</p>
-                    <p className="text-gray-400">Fijo: (601) 404 2495</p>
                   </div>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-brand-accent text-white rounded-full flex items-center justify-center shrink-0">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-white">Correo Electrónico</h4>
-                  <p className="text-gray-400">contacto@profesionalesjuridicos.com</p>
-                </div>
-              </div>
+              {/* Se eliminó el correo electrónico por solicitud del usuario */}
             </div>
           </div>
           
