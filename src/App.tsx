@@ -812,7 +812,7 @@ No des consejos legales. Sé breve y formal.`,
           <div className="flex-grow overflow-y-auto p-4 space-y-4 scrollbar-hide">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] p-3 rounded-2xl text-sm ${
+                <div className={`max-w-[85%] p-3 rounded-2xl text-sm text-justify ${
                   msg.role === 'user' 
                     ? 'bg-white text-brand-black rounded-tr-none' 
                     : 'bg-white/5 text-gray-300 border border-white/10 rounded-tl-none'
@@ -932,11 +932,11 @@ export default function App() {
                 <div className="grid grid-cols-2 gap-8">
                   <div className="border-l-2 border-white/20 pl-4">
                     <h4 className="font-bold mb-1 text-white">Misión</h4>
-                    <p className="text-sm text-gray-400">Defender con integridad y excelencia cada causa confiada.</p>
+                    <p className="text-sm text-gray-400 text-justify">Defender con integridad y excelencia cada causa confiada.</p>
                   </div>
                   <div className="border-l-2 border-white/20 pl-4">
                     <h4 className="font-bold mb-1 text-white">Visión</h4>
-                    <p className="text-sm text-gray-400">Ser el referente de confianza jurídica en toda Colombia.</p>
+                    <p className="text-sm text-gray-400 text-justify">Ser el referente de confianza jurídica en toda Colombia.</p>
                   </div>
                 </div>
               </div>
