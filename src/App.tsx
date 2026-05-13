@@ -5,7 +5,6 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { GoogleGenAI } from "@google/genai";
 import { 
   Phone, 
   Mail, 
@@ -660,7 +659,6 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
   const [input, setInput] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const chatEndRef = React.useRef<HTMLDivElement>(null);
-  const [chatSession, setChatSession] = React.useState<any>(null);
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -685,50 +683,30 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
     
     setIsLoading(true);
     try {
-      // Verificación de la API Key para depuración en producción (Vercel)
-      console.log('Verificando Key:', import.meta.env.VITE_GEMINI_API_KEY ? 'Detectada' : 'No detectada');
-      
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-      if (!apiKey) {
-        console.error("Error: VITE_GEMINI_API_KEY no detectada");
-        throw new Error("VITE_GEMINI_API_KEY no configurada. Por favor, verifique las variables de entorno en Vercel.");
-      }
-      
-      const ai = new GoogleGenAI({ apiKey: apiKey });
-      const chat = ai.chats.create({
-        model: "gemini-3-flash-preview",
-        config: {
-          systemInstruction: `Eres Catalina, asistente legal en Colombia. Tu misión es recoger datos para un abogado.
-Reglas:
-1. Saluda profesionalmente.
-2. Pregunta el área legal y una breve descripción.
-3. Pide nombre y teléfono.
-4. Al final, genera un resumen con este formato:
-RESUMEN PARA ABOGADO
-Nombre: [Nombre]
-Área: [Área]
-Teléfono: [Teléfono]
-Caso: [Breve descripción]
-Urgencia: [Alta/Media/Baja]
-
-No des consejos legales. Sé breve y formal.`,
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          message: "Hola, preséntate como Catalina y pregunta cómo puedes ayudar.",
+          messages: []
+        }),
       });
-      
-      setChatSession(chat);
-      
-      if (!force) {
-        const response = await chat.sendMessage({ message: "Hola, preséntate como Catalina y pregunta cómo puedes ayudar." });
-        const text = response.text || '';
-        if (text) {
-          setMessages([{ role: 'assistant', content: text }]);
-        }
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to initialize chat');
       }
-      return chat;
+
+      const data = await response.json();
+      const text = data.text || '';
+      if (text) {
+        setMessages([{ role: 'assistant', content: text }]);
+      }
     } catch (error) {
       console.error("Error initializing chat:", error);
       if (!force) setMessages([{ role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
-      return null;
     } finally {
       setIsLoading(false);
     }
@@ -741,23 +719,31 @@ No des consejos legales. Sé breve y formal.`,
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    let currentSession = chatSession;
-    if (!currentSession) {
-      currentSession = await initChat(true);
-      if (!currentSession) {
-        setMessages(prev => [...prev, { role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
-        return;
-      }
-    }
-
     const userMessage = input.trim();
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    const newMessages = [...messages, { role: 'user' as const, content: userMessage }];
+    setMessages(newMessages);
     setIsLoading(true);
 
     try {
-      const response = await currentSession.sendMessage({ message: userMessage });
-      const assistantMessage = response.text || '';
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          messages: messages // Pass history
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send message');
+      }
+
+      const data = await response.json();
+      const assistantMessage = data.text || '';
       if (assistantMessage) {
         setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
       } else {
