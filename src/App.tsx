@@ -658,6 +658,9 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
   const [messages, setMessages] = React.useState<{ role: 'user' | 'assistant', content: string }[]>([]);
   const [input, setInput] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const [userName, setUserName] = React.useState('');
+  const [userCase, setUserCase] = React.useState('');
+  const [chatStep, setChatStep] = React.useState<'name' | 'case' | 'completed'>('name');
   const chatEndRef = React.useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -670,47 +673,16 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
 
   React.useEffect(() => {
     if (isOpen && messages.length === 0 && !isLoading) {
-      // Small delay to ensure state is ready on all devices
+      // Saludo inicial simplificado
       const timer = setTimeout(() => {
-        initChat();
-      }, 1000);
+        setMessages([{ 
+          role: 'assistant', 
+          content: "Hola, soy Catalina, tu asistente legal. Para empezar, ¿con quién tengo el gusto de hablar?" 
+        }]);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
-
-  const initChat = async (force = false) => {
-    if (!force && (messages.length > 0 || isLoading)) return; 
-    
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: "Hola, preséntate como Catalina y pregunta cómo puedes ayudar.",
-          messages: []
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to initialize chat');
-      }
-
-      const data = await response.json();
-      const text = data.text || '';
-      if (text) {
-        setMessages([{ role: 'assistant', content: text }]);
-      }
-    } catch (error) {
-      console.error("Error initializing chat:", error);
-      if (!force) setMessages([{ role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -721,44 +693,44 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
 
     const userMessage = input.trim();
     setInput('');
-    const newMessages = [...messages, { role: 'user' as const, content: userMessage }];
-    setMessages(newMessages);
+    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setIsLoading(true);
 
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: userMessage,
-          messages: messages // Pass history
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to send message');
-      }
-
-      const data = await response.json();
-      const assistantMessage = data.text || '';
-      if (assistantMessage) {
-        setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
+    // Simulamos respuesta del "agente"
+    setTimeout(() => {
+      let response = "";
+      
+      if (chatStep === 'name') {
+        setUserName(userMessage);
+        response = `Mucho gusto, ${userMessage}. ¿Podrías contarme brevemente sobre tu caso o la asesoría que necesitas?`;
+        setChatStep('case');
+      } else if (chatStep === 'case') {
+        setUserCase(userMessage);
+        response = "Entiendo perfectamente. He tomado nota de tu consulta. Para darte una solución legal inmediata, por favor haz clic en el botón de WhatsApp que aparece a continuación para hablar directamente con uno de nuestros abogados.";
+        setChatStep('completed');
       } else {
-        throw new Error("Empty response");
+        response = "Por favor, utiliza el botón de WhatsApp para contactarnos directamente. Estamos listos para ayudarte.";
       }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setMessages(prev => [...prev, { role: 'assistant', content: "ERROR_TECNICO_WHATSAPP" }]);
-    } finally {
+
+      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
       setIsLoading(false);
-    }
+    }, 800);
   };
 
-  const sendToWhatsApp = (content: string) => {
-    const encodedMessage = encodeURIComponent(content);
+  const sendToWhatsApp = (content?: string) => {
+    let finalMessage = "";
+    
+    if (content) {
+      finalMessage = content;
+    } else {
+      finalMessage = `RESUMEN DE CONSULTA (Asistente Virtual)
+Nombre: ${userName}
+Caso: ${userCase}
+Urgencia: Alta
+Solicito asesoría legal inmediata.`;
+    }
+
+    const encodedMessage = encodeURIComponent(finalMessage);
     window.open(`https://wa.me/573212021513?text=${encodedMessage}`, '_blank');
   };
 
@@ -804,6 +776,20 @@ const WhatsAppButton = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (va
                       ? "Lo siento, ha ocurrido un error técnico. Por favor intenta de nuevo o contáctanos directamente por WhatsApp para atenderte de inmediato." 
                       : msg.content}
                   </div>
+                  {chatStep === 'completed' && msg.role === 'assistant' && idx === messages.length - 1 && (
+                    <motion.button 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      onClick={() => sendToWhatsApp()}
+                      className="mt-4 w-full bg-[#25D366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:opacity-90 transition-all shadow-lg animate-bounce"
+                    >
+                      <MessageCircle size={24} fill="currentColor" /> 
+                      <div className="flex flex-col items-start leading-tight">
+                        <span className="text-sm">Hablar con un Abogado</span>
+                        <span className="text-[10px] opacity-80 font-normal">WhatsApp Oficial</span>
+                      </div>
+                    </motion.button>
+                  )}
                   {msg.role === 'assistant' && msg.content.includes('RESUMEN PARA ABOGADO') && (
                     <button 
                       onClick={() => sendToWhatsApp(msg.content)}
